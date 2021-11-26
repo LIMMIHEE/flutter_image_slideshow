@@ -63,6 +63,14 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       final correctIndex = index % widget.children.length;
       widget.onPageChanged!(correctIndex);
     }
+    
+    if(index == widget.children.lengt-1) {
+      _pageController.animateToPage(
+        0,
+        duration: const Duration(milliseconds: 350),
+        curve: Curves.easeIn,
+      );
+    }
   }
 
   void _autoPlayTimerStart() {
