@@ -68,7 +68,7 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       widget.onPageChanged!(correctIndex);
     }
 
-    if(isCustomLoop && index == widget.children.lengt-1) {
+    if(widget.isCustomLoop && index == widget.children.lengt-1) {
       _pageController.animateToPage(
         0,
         duration: const Duration(milliseconds: 350),
