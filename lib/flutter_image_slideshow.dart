@@ -71,7 +71,9 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
     var nextIndex = ++index;
     if(widget.isCustomLoop && nextIndex == widget.children.length) {
       if (_pageController.hasClients) {
-        _pageController.jumpToPage(0);
+        _pageController.animateToPage(
+            0,
+            duration: const Duration(milliseconds: 3000));
       }
     }
   }
