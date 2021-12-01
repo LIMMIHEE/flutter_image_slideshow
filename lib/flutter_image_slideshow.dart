@@ -50,7 +50,7 @@ class ImageSlideshow extends StatefulWidget {
   /// Loops back to first slide.
   final bool isLoop;
 
-  // returning from the last page to the first page, user unlimited scrolling prohibition
+  /// returning from the last page to the first page, user unlimited scrolling prohibition
   final bool isCustomLoop;
 
   @override
@@ -68,8 +68,8 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       widget.onPageChanged!(correctIndex);
     }
 
-    var nextIndex = index.toInt() + 1;
-    if(widget.isCustomLoop && nextIndex == widget.children.length) {
+    var nextIndex = index;
+    if(widget.isCustomLoop && ++nextIndex == widget.children.length) {
       if (_pageController.hasClients) {
         Future.delayed(const Duration(milliseconds: 3000), () {
           _currentPageNotifier.value = 0;
