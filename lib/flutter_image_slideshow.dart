@@ -68,9 +68,10 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       widget.onPageChanged!(correctIndex);
     }
 
-    var nextIndex = index;
-    if(widget.isCustomLoop && ++nextIndex == widget.children.length) {
-      if (_pageController.hasClients) {
+  
+    if(widget.isCustomLoop) {
+       var nextIndex = index;
+      if (_pageController.hasClients && ++nextIndex == widget.children.length) {
         Future.delayed(const Duration(milliseconds: 3000), () {
           _currentPageNotifier.value = 0;
           _pageController.animateToPage(
