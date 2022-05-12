@@ -134,46 +134,43 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
     return SizedBox(
       width: widget.width,
       height: widget.height,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(12)),
-        ),
-        child: Stack(
-          children: [
-            PageView.builder(
-              scrollBehavior: const ScrollBehavior().copyWith(
-                scrollbars: false,
-                dragDevices: {
-                  PointerDeviceKind.touch,
-                  PointerDeviceKind.mouse,
-                },
-              ),
-              onPageChanged: _onPageChanged,
-              itemCount: widget.isLoop ? null : widget.children.length,
-              controller: _pageController,
-              itemBuilder: (context, index) {
-                final correctIndex = index % widget.children.length;
-                return widget.children[correctIndex];
+      child: Stack(
+        children: [
+          PageView.builder(
+            scrollBehavior: const ScrollBehavior().copyWith(
+              scrollbars: false,
+              dragDevices: {
+                PointerDeviceKind.touch,
+                PointerDeviceKind.mouse,
               },
             ),
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 10,
-              child: ValueListenableBuilder<int>(
-                valueListenable: _currentPageNotifier,
-                builder: (context, value, child) {
-                  return Indicator(
-                    count: widget.children.length,
-                    currentIndex: value % widget.children.length,
-                    activeColor: widget.indicatorColor,
-                    backgroundColor: widget.indicatorBackgroundColor,
-                  );
-                },
-              ),
+            onPageChanged: _onPageChanged,
+            itemCount: widget.isLoop ? null : widget.children.length,
+            controller: _pageController,
+            itemBuilder: (context, index) {
+              final correctIndex = index % widget.children.length;
+              return ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+              child:widget.children[correctIndex]);
+            },
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 10,
+            child: ValueListenableBuilder<int>(
+              valueListenable: _currentPageNotifier,
+              builder: (context, value, child) {
+                return Indicator(
+                  count: widget.children.length,
+                  currentIndex: value % widget.children.length,
+                  activeColor: widget.indicatorColor,
+                  backgroundColor: widget.indicatorBackgroundColor,
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
