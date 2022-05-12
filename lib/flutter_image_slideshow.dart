@@ -136,7 +136,7 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       height: widget.height,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(3.w)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child: Stack(
           children: [
