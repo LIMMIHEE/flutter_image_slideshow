@@ -136,7 +136,9 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
       height: widget.height,
       child: Stack(
         children: [
-          PageView.builder(
+            ClipRRect(
+            borderRadius: BorderRadius.circular(12),
+            child:PageView.builder(
             scrollBehavior: const ScrollBehavior().copyWith(
               scrollbars: false,
               dragDevices: {
@@ -149,11 +151,9 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
             controller: _pageController,
             itemBuilder: (context, index) {
               final correctIndex = index % widget.children.length;
-              return ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-              child:widget.children[correctIndex]);
+              return widget.children[correctIndex];
             },
-          ),
+          )),
           Positioned(
             left: 0,
             right: 0,
