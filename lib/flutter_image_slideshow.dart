@@ -16,7 +16,8 @@ class ImageSlideshow extends StatefulWidget {
     this.onPageChanged,
     this.autoPlayInterval,
     this.isLoop = false,
-    this.isCustomLoop = false
+    this.isCustomLoop = false,
+    this.stopLoop = false
   }) : super(key: key);
 
   /// The widgets to display in the [ImageSlideshow].
@@ -53,6 +54,9 @@ class ImageSlideshow extends StatefulWidget {
   /// returning from the last page to the first page, user unlimited scrolling prohibition
   final bool isCustomLoop;
 
+  /// stop the loop
+  final bool stopLoop;
+  
   @override
   _ImageSlideshowState createState() => _ImageSlideshowState();
 }
@@ -92,11 +96,12 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
         if (widget.isLoop) {
           nextPage = _currentPageNotifier.value + 1;
         } else {
-          if (_currentPageNotifier.value < widget.children.length - 1) {
-            nextPage = _currentPageNotifier.value + 1;
-          } else {
-            return;
-          }
+          return;
+          // if (_currentPageNotifier.value < widget.children.length - 1) {
+          //   nextPage = _currentPageNotifier.value + 1;
+          // } else {
+          //   return;
+          // }
         }
 
         if (_pageController.hasClients) {
