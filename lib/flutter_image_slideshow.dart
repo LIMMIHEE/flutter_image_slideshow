@@ -166,6 +166,8 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
             child: ValueListenableBuilder<int>(
               valueListenable: _currentPageNotifier,
               builder: (context, value, child) {
+
+                print("확인용입니다 $value|${widget.children.length}\n${value % widget.children.length}");
                 return Indicator(
                   count: widget.children.length,
                   currentIndex: (value % widget.children.length).floor(),
