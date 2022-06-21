@@ -168,7 +168,7 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
               builder: (context, value, child) {
                 return Indicator(
                   count: widget.children.length,
-                  currentIndex: value % widget.children.length,
+                  currentIndex: (value % widget.children.length).floor(),
                   activeColor: widget.indicatorColor,
                   backgroundColor: widget.indicatorBackgroundColor,
                 );
