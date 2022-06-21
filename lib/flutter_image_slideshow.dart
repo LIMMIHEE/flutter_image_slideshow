@@ -97,11 +97,6 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
           nextPage = _currentPageNotifier.value + 1;
         } else {
           return;
-          // if (_currentPageNotifier.value < widget.children.length - 1) {
-          //   nextPage = _currentPageNotifier.value + 1;
-          // } else {
-          //   return;
-          // }
         }
 
         if (_pageController.hasClients) {
@@ -167,10 +162,9 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
               valueListenable: _currentPageNotifier,
               builder: (context, value, child) {
 
-                print("확인용입니다 $value|${widget.children.length}\n${value % widget.children.length}");
                 return Indicator(
                   count: widget.children.length,
-                  currentIndex: (value % widget.children.length).floor(),
+                  currentIndex: value % widget.children.length,
                   activeColor: widget.indicatorColor,
                   backgroundColor: widget.indicatorBackgroundColor,
                 );
