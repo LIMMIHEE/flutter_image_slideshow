@@ -83,7 +83,7 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
               _currentPageNotifier.value = 0;
             }
             _pageController.animateToPage(
-              nextPage,
+              nextIndex,
               duration: const Duration(milliseconds: 350),
               curve: Curves.easeIn,
             );
