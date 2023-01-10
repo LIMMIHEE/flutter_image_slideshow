@@ -74,22 +74,17 @@ class _ImageSlideshowState extends State<ImageSlideshow> {
 
   
     if(widget.isCustomLoop) {
-      int nextIndex = index;
-      Timer.periodic(
-        Duration(milliseconds: widget.autoPlayInterval!),
-            (timer) {
-          if (_pageController.hasClients) {
-            if(++nextIndex == widget.children.length){
-              _currentPageNotifier.value = 0;
-            }
-            _pageController.animateToPage(
-              nextIndex,
-              duration: const Duration(milliseconds: 350),
-              curve: Curves.easeIn,
-            );
-          }
-        },
-      );
+          var nextIndex = index;
+      if (_pageController.hasClients && ++nextIndex == widget.children.length) {
+        Future.delayed(const Duration(milliseconds: 3000), () {
+          _currentPageNotifier.value = 0;
+          _pageController.animateToPage(
+            0,
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeIn,
+          );
+        });
+      }
     }
   }
 
